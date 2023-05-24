@@ -57,10 +57,6 @@ export default {
             i18n.global.locale = event.data.locale || "en";
         };
 
-        onMounted(() => {
-            i18n.global.locale = "fr";
-        });
-
         const playAudio = (audio, source) => {
             audio.src = source;
             audio.play();
