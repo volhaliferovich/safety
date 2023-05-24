@@ -31,8 +31,8 @@ export default {
 
 .title {
     font-family: "Ranchers", sans-serif;
-    font-size: 149px;
-    line-height: 100%;
+    font-size: 131px;
+    line-height: 110%;
     letter-spacing: 0.04em;
     text-transform: uppercase;
 

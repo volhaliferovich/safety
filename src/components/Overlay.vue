@@ -9,7 +9,6 @@
 
 export default {
     name: "Overlay",
-    setup() {},
 };
 </script>
 

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { i18n } from "@/plugins/i18n";
 import questions from "@/data";
 import Intro from "@/components/Intro.vue";
@@ -31,6 +31,11 @@ import letsPlayVoice from "./assets/audios/voice/BL-0001_Lets-play-Safety-Select
 import introVoice from "./assets/audios/voice/BL-0002_Help-Operations-Manager-Darcy_24k_mono.mp3";
 import correctVoice from "./assets/audios/voice/BL-0004_Correct_24k_mono.mp3";
 import wrongVoice from "./assets/audios/voice/BL-0005_Oops_24k_mono.mp3";
+import gameOverVoiceFr from "./assets/audios/voice/FR/BL-0020_Partie-terminée_24k_mono.mp3";
+import letsPlayVoiceFr from "./assets/audios/voice/FR/BL-0001_Jouons-à-Sécurité-Sélection_24k_mono.mp3";
+import introVoiceFr from "./assets/audios/voice/FR/BL-0002_Aidez-Darcy-Fraser-gestionnai_24k_mono.mp3";
+import correctVoiceFr from "./assets/audios/voice/FR/BL-0004_Correct_24k_mono.mp3";
+import wrongVoiceFr from "./assets/audios/voice/FR/BL-0005_Oups_24k_mono.mp3";
 
 export default {
     name: "App",
@@ -46,10 +51,30 @@ export default {
         const backgroundAudio = new Audio(backgroundSnd);
         const voiceAudio = new Audio();
         const tipAudio = new Audio();
+        const voiceOver = computed(() => {
+            switch (i18n.global.locale.value) {
+                case "fr":
+                    return {
+                        intro: introVoiceFr,
+                        letsPlay: letsPlayVoiceFr,
+                        gameOver: gameOverVoiceFr,
+                        correct: correctVoiceFr,
+                        oops: wrongVoiceFr,
+                    };
+                default:
+                    return {
+                        intro: introVoice,
+                        letsPlay: letsPlayVoice,
+                        gameOver: gameOverVoice,
+                        correct: correctVoice,
+                        oops: wrongVoice,
+                    };
+            }
+        });
 
         window.onmessage = (event) => {
             i18n.global.locale.value = event.data.locale || "en";
-        }
+        };
 
         const playAudio = (audio, source) => {
             audio.src = source;
@@ -57,13 +82,13 @@ export default {
         };
 
         const playIntroVoice = () => {
-            playAudio(voiceAudio, letsPlayVoice);
+            playAudio(voiceAudio, voiceOver.value.letsPlay);
             voiceAudio.addEventListener("ended", () => {
                 if (showHome.value) {
-                    playAudio(tipAudio, introVoice);
+                    playAudio(tipAudio, voiceOver.value.intro);
                 }
             });
-        }
+        };
 
         const hideOverlayHandler = () => {
             showOverlay.value = false;
@@ -104,10 +129,10 @@ export default {
             answerAudio.volume = 1;
             if (questions.value[questionIndex.value].answers[answer].correct) {
                 playAudio(answerAudio, correctSnd);
-                playAudio(voiceAudio, correctVoice);
+                playAudio(voiceAudio, voiceOver.value.correct);
             } else {
                 playAudio(answerAudio, wrongSnd);
-                playAudio(voiceAudio, wrongVoice);
+                playAudio(voiceAudio, voiceOver.value.oops);
             }
             selectedAnswer.value = answer;
             showAnswer.value = true;
@@ -119,7 +144,7 @@ export default {
             if (questionIndex.value === questions.value.length - 1) {
                 gameOver.value = true;
                 window.top.postMessage({ completed: true }, '*');
-                playAudio(voiceAudio, gameOverVoice);
+                playAudio(voiceAudio, voiceOver.value.gameOver);
             } else {
                 questionIndex.value++;
                 selectedAnswer.value = null;
@@ -142,7 +167,7 @@ export default {
             selectedAnswer,
             hideOverlayHandler,
             showOverlay,
-        }
+        };
     }
 }
 </script>

@@ -46,8 +46,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 500px;
-    margin: 64px 0 70px;
+    margin: 60px 0;
 }
 
 .text {
@@ -58,22 +57,18 @@ export default {
 }
 
 .play-again-text {
+    max-width: 350px;
     margin-right: 43px;
     font-size: 64px;
     line-height: 97%;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .btn {
     background: transparent;
     border: none;
     cursor: pointer;
-}
-
-.btn > img {
-    display: block;
-    height: auto;
-    max-width: 100%;
 }
 
 .next-arrow {
