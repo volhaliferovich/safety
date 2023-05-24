@@ -1,17 +1,14 @@
 <template>
     <section class="overlay">
-        <h1 class="overlay-text">{{ title }}</h1>
-        <button class="overlay-btn" @click="$emit('continue')">{{ buttonText }}</button>
+        <h1 class="overlay-text">{{ $t('Overlay.game_time') }}</h1>
+        <button class="overlay-btn" @click="$emit('continue')">{{ $t('Overlay.continue') }}</button>
     </section>
 </template>
 
 <script>
+
 export default {
     name: "Overlay",
-    props: {
-        title: String,
-        buttonText: String,
-    },
     setup() {},
 };
 </script>

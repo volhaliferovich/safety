@@ -1,11 +1,6 @@
 <template>
     <main>
-        <Overlay
-            v-if="showOverlay"
-            :title="$t('Overlay.game_time')"
-            :button-text="$t('Overlay.continue')"
-            @continue="hideOverlayHandler"
-        />
+        <Overlay v-if="showOverlay" @continue="hideOverlayHandler"/>
         <Intro v-if="showHome" @start="startGameHandler" />
         <Quiz
             v-if="gameStarted && questions.length > 0 && !gameOver"
@@ -22,11 +17,12 @@
 
 <script>
 import { ref } from "vue";
+import { i18n } from "@/plugins/i18n";
+import questions from "@/data";
 import Intro from "@/components/Intro.vue";
 import PlayAgain from "@/components/PlayAgain.vue";
 import Quiz from "@/components/Quiz.vue";
 import Overlay from "@/components/Overlay.vue";
-import data from "@/data";
 import backgroundSnd from "./assets/audios/background.mp3";
 import correctSnd from "./assets/audios/Correct.wav";
 import wrongSnd from "./assets/audios/Incorrect.wav";
@@ -44,13 +40,16 @@ export default {
         const showOverlay = ref(true);
         const gameOver = ref(false);
         const gameStarted = ref(false);
-        const questions = ref([]);
         const questionIndex = ref(0);
         const showAnswer = ref(false);
         const selectedAnswer = ref(null);
         const backgroundAudio = new Audio(backgroundSnd);
         const voiceAudio = new Audio();
         const tipAudio = new Audio();
+
+        window.onmessage = (event) => {
+            i18n.global.locale.value = event.data.locale || "en";
+        }
 
         const playAudio = (audio, source) => {
             audio.src = source;
@@ -78,7 +77,6 @@ export default {
             tipAudio.pause();
             showHome.value = false;
             gameStarted.value = true;
-            questions.value = data;
             playAudio(voiceAudio, questions.value[questionIndex.value].textAudio);
         };
 
@@ -86,7 +84,6 @@ export default {
             showHome.value = true;
             gameOver.value = false;
             gameStarted.value = false;
-            questions.value = [];
             questionIndex.value = 0;
             showAnswer.value = false;
             selectedAnswer.value = null;
