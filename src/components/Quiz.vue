@@ -26,7 +26,7 @@
             </button>
         </div>
         <div v-if="showAnswer" class="footer">
-            <h4 class="tip"><span>{{ data[questionIndex].answers[selectedAnswer].correct ? "CORRECT!" : "OOPS!" }}</span> {{ data[questionIndex].answers[selectedAnswer].tip }}</h4>
+            <h4 class="tip">{{ data[questionIndex].answers[selectedAnswer].correct ? $t('Exclamation.correct') : $t('Exclamation.oops') }} {{ data[questionIndex].answers[selectedAnswer].tip }}</h4>
         </div>
     </section>
 </template>
@@ -154,9 +154,5 @@ export default {
     line-height: 101%;
     letter-spacing: 0.005em;
     text-align: center;
-}
-
-.tip > span {
-    text-transform: uppercase;
 }
 </style>

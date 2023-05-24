@@ -1,13 +1,13 @@
 <template>
     <section class="section">
-        <h1 class="title">game over!</h1>
+        <h1 class="title">{{ $t('Finish.game_over') }}</h1>
         <div class="container">
-            <h3 class="text play-again-text">Play <br /> again</h3>
+            <h3 class="text play-again-text">{{ $t('Finish.play_again') }}</h3>
             <button class="btn" @click="$emit('play-again')">
                 <img src="../assets/images/again-btn.svg" alt="Play again" />
             </button>
         </div>
-        <h4 class="text">or click Next below to continue</h4>
+        <h4 class="text">{{ $t('Finish.continue') }}</h4>
         <img class="next-arrow" src="../assets/images/next-icon.svg" alt="Next">
     </section>
 </template>
@@ -34,6 +34,7 @@ export default {
     line-height: 100%;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    text-align: center;
 
     background: linear-gradient(206.83deg, #FFFFFF 27.45%, #FFE1A0 97.6%);
     -webkit-background-clip: text;
@@ -53,13 +54,13 @@ export default {
     font-size: 40px;
     line-height: 123%;
     letter-spacing: 0.005em;
+    text-align: center;
 }
 
 .play-again-text {
     margin-right: 43px;
     font-size: 64px;
     line-height: 97%;
-    text-transform: uppercase;
     text-align: center;
 }
 

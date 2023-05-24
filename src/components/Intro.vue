@@ -1,8 +1,8 @@
 <template>
     <section class="section">
         <div class="left">
-            <h1 class="title">Safety  Select</h1>
-            <h4 class="text">Help Operations Manager Darcy Fraser choose better hand, wrist and finger positions!</h4>
+            <h1 class="title">{{ $t('Intro.safety_select') }}</h1>
+            <h4 class="text">{{ $t('Intro.help_manager') }}</h4>
         </div>
         <button class="btn" @click="$emit('start')">
             <img src="../assets/images/play-btn.svg" alt="Play" />
@@ -26,7 +26,7 @@ export default {
 }
 
 .left {
-    max-width: 552px;
+    max-width: 660px;
 }
 
 .title {
@@ -55,9 +55,9 @@ export default {
     cursor: pointer;
 }
 
-.btn > img {
-    display: block;
-    height: auto;
-    max-width: 100%;
+@media only screen and (max-width: 1400px) {
+    .section {
+        padding: 0 120px;
+    }
 }
 </style>

@@ -1,3 +1,5 @@
+import { i18n } from "@/plugins/i18n.js";
+
 import q1_a1 from "./assets/images/q1_a1.png";
 import q1_a2 from "./assets/images/q1_a2.png";
 import q2_a1 from "./assets/images/q2_a1.png";
@@ -26,39 +28,39 @@ import q5_v2 from "./assets/audios/voice/BL-0018_Try-again-to-move-Darcys-elbo_2
 
 export default [
     {
-        text: "Which is an example of a Smart Setup?",
+        text: i18n.global.t("Question_1.text"),
         textAudio: q1,
         answers: [
-            { option: q1_a1, tip: "This position puts strain on the body. Try Again.", voice: q1_v1 },
-            { option: q1_a2, correct: true, tip: "In this case, Darcy tips the box, allowing his wrist to be in the mid-range and less stressed.", voice: q1_v2 },
+            { option: q1_a1, tip: i18n.global.t("Question_1.oops_tip"), voice: q1_v1 },
+            { option: q1_a2, correct: true, tip: i18n.global.t("Question_1.correct_tip"), voice: q1_v2 },
         ],
     }, {
-        text: "Which shows the wrist in a STRESSED end-range position?",
+        text: i18n.global.t("Question_2.text"),
         textAudio: q2,
         answers: [
-            { option: q2_a1, correct: true, tip: "The end-range puts stress on your wrist. Darcy's body can become more stressed if he chooses to scan like this!", voice: q2_v1 },
-            { option: q2_a2, tip: "Try again to select the STRESSED image.", voice: q2_v2 },
+            { option: q2_a1, correct: true, tip: i18n.global.t("Question_2.correct_tip"), voice: q2_v1 },
+            { option: q2_a2, tip: i18n.global.t("Question_2.oops_tip"), voice: q2_v2 },
         ],
     }, {
-        text: "Which grip is better for your hands and forearms?",
+        text: i18n.global.t("Question_3.text"),
         textAudio: q3,
         answers: [
-            { option: q3_a1, correct: true, tip: "A relaxed index finger and thumb reduce fatigue.", voice: q3_v1 },
-            { option: q3_a2, tip: "This looks stressed, try again.", voice: q3_v2 },
+            { option: q3_a1, correct: true, tip: i18n.global.t("Question_3.correct_tip"), voice: q3_v1 },
+            { option: q3_a2, tip: i18n.global.t("Question_3.oops_tip"), voice: q3_v2 },
         ],
     }, {
-        text: "Which wrist position maintains the mid-range?",
+        text: i18n.global.t("Question_4.text"),
         textAudio: q4,
         answers: [
-            { option: q4_a1, tip: "The wrist is more of an end-range, which stresses the wrist. Try Again.", voice: q4_v1 },
-            { option: q4_a2, correct: true, tip: "Push with the little finger side of your hand.", voice: q4_v2 },
+            { option: q4_a1, tip: i18n.global.t("Question_4.oops_tip"), voice: q4_v1 },
+            { option: q4_a2, correct: true, tip: i18n.global.t("Question_4.correct_tip"), voice: q4_v2 },
         ],
     }, {
-        text: "Which setup is better for carrying this freight?",
+        text: i18n.global.t("Question_5.text"),
         textAudio: q5,
         answers: [
-            { option: q5_a1, correct: true, tip: "By placing one hand at a corner, Darcy can have his elbow closer to his body in the green zone.", voice: q5_v1 },
-            { option: q5_a2, tip: "Try again to move Darcy's elbows from the yellow to the green zone!", voice: q5_v2 },
+            { option: q5_a1, correct: true, tip: i18n.global.t("Question_5.correct_tip"), voice: q5_v1 },
+            { option: q5_a2, tip: i18n.global.t("Question_5.oops_tip"), voice: q5_v2 },
         ],
     },
 ];
