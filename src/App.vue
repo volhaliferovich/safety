@@ -21,13 +21,12 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import Intro from "@/components/Intro.vue";
 import PlayAgain from "@/components/PlayAgain.vue";
 import Quiz from "@/components/Quiz.vue";
 import Overlay from "@/components/Overlay.vue";
 import data from "@/data";
-import { i18n } from "@/plugins/i18n";
 import backgroundSnd from "./assets/audios/background.mp3";
 import correctSnd from "./assets/audios/Correct.wav";
 import wrongSnd from "./assets/audios/Incorrect.wav";
@@ -52,10 +51,6 @@ export default {
         const backgroundAudio = new Audio(backgroundSnd);
         const voiceAudio = new Audio();
         const tipAudio = new Audio();
-
-        window.onmessage = (event) => {
-            i18n.global.locale = event.data.locale || "en";
-        };
 
         const playAudio = (audio, source) => {
             audio.src = source;
