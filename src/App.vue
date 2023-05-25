@@ -36,11 +36,13 @@ import letsPlayVoiceFr from "./assets/audios/voice/FR/BL-0001_Jouons-à-Sécurit
 import introVoiceFr from "./assets/audios/voice/FR/BL-0002_Aidez-Darcy-Fraser-gestionnai_24k_mono.mp3";
 import correctVoiceFr from "./assets/audios/voice/FR/BL-0004_Correct_24k_mono.mp3";
 import wrongVoiceFr from "./assets/audios/voice/FR/BL-0005_Oups_24k_mono.mp3";
+import {useI18n} from "vue-i18n";
 
 export default {
     name: "App",
     components: { PlayAgain, Intro, Quiz, Overlay },
     setup() {
+        const { locale }  = useI18n();
         const showHome = ref(true);
         const showOverlay = ref(true);
         const gameOver = ref(false);
@@ -52,29 +54,28 @@ export default {
         const voiceAudio = new Audio();
         const tipAudio = new Audio();
         const voiceOver = computed(() => {
-            switch (i18n.global.locale.value) {
-                case "fr":
-                    return {
-                        intro: introVoiceFr,
-                        letsPlay: letsPlayVoiceFr,
-                        gameOver: gameOverVoiceFr,
-                        correct: correctVoiceFr,
-                        oops: wrongVoiceFr,
-                    };
-                default:
-                    return {
-                        intro: introVoice,
-                        letsPlay: letsPlayVoice,
-                        gameOver: gameOverVoice,
-                        correct: correctVoice,
-                        oops: wrongVoice,
-                    };
+            if (locale.value === "fr") {
+                return {
+                    intro: introVoiceFr,
+                    play: letsPlayVoiceFr,
+                    over: gameOverVoiceFr,
+                    correct: correctVoiceFr,
+                    oops: wrongVoiceFr,
+                };
+            } else {
+                return {
+                    intro: introVoice,
+                    play: letsPlayVoice,
+                    over: gameOverVoice,
+                    correct: correctVoice,
+                    oops: wrongVoice,
+                };
             }
         });
 
         window.onmessage = (event) => {
             if (event.data.locale) {
-                i18n.global.locale.value = event.data.locale;
+                locale.value = event.data.locale;
             }
         };
 
@@ -84,7 +85,7 @@ export default {
         };
 
         const playIntroVoice = () => {
-            playAudio(voiceAudio, voiceOver.value.letsPlay);
+            playAudio(voiceAudio, voiceOver.value.play);
             voiceAudio.addEventListener("ended", () => {
                 if (showHome.value) {
                     playAudio(tipAudio, voiceOver.value.intro);
@@ -146,7 +147,7 @@ export default {
             if (questionIndex.value === questions.value.length - 1) {
                 gameOver.value = true;
                 window.top.postMessage({ completed: true }, '*');
-                playAudio(voiceAudio, voiceOver.value.gameOver);
+                playAudio(voiceAudio, voiceOver.value.over);
             } else {
                 questionIndex.value++;
                 selectedAnswer.value = null;

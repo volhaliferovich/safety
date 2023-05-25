@@ -42,23 +42,22 @@ import q5_v2 from "@/assets/audios/voice/BL-0018_Try-again-to-move-Darcys-elbo_2
 import fr_q5_v2 from "@/assets/audios/voice/FR/BL-0018_Essayez-à-nouveau-de-déplacer_24k_mono.mp3";
 
 const voiceOver = computed(() => {
-    switch(i18n.global.locale.value) {
-        case "fr":
-            return {
-                q1: { q: fr_q1, v1: fr_q1_v1, v2: fr_q1_v2 },
-                q2: { q: fr_q2, v1: fr_q2_v1, v2: fr_q2_v2 },
-                q3: { q: fr_q3, v1: fr_q3_v1, v2: fr_q3_v2 },
-                q4: { q: fr_q4, v1: fr_q4_v1, v2: fr_q4_v2 },
-                q5: { q: fr_q5, v1: fr_q5_v1, v2: fr_q5_v2 },
-            };
-        default:
-            return {
-                q1: { q: q1, v1: q1_v1, v2: q1_v2 },
-                q2: { q: q2, v1: q2_v1, v2: q2_v2 },
-                q3: { q: q3, v1: q3_v1, v2: q3_v2 },
-                q4: { q: q4, v1: q4_v1, v2: q4_v2 },
-                q5: { q: q5, v1: q5_v1, v2: q5_v2 },
-            };
+    if (i18n.global.locale.value === "fr") {
+        return {
+            q1: { q: fr_q1, v1: fr_q1_v1, v2: fr_q1_v2 },
+            q2: { q: fr_q2, v1: fr_q2_v1, v2: fr_q2_v2 },
+            q3: { q: fr_q3, v1: fr_q3_v1, v2: fr_q3_v2 },
+            q4: { q: fr_q4, v1: fr_q4_v1, v2: fr_q4_v2 },
+            q5: { q: fr_q5, v1: fr_q5_v1, v2: fr_q5_v2 },
+        };
+    } else {
+        return {
+            q1: { q: q1, v1: q1_v1, v2: q1_v2 },
+            q2: { q: q2, v1: q2_v1, v2: q2_v2 },
+            q3: { q: q3, v1: q3_v1, v2: q3_v2 },
+            q4: { q: q4, v1: q4_v1, v2: q4_v2 },
+            q5: { q: q5, v1: q5_v1, v2: q5_v2 },
+        };
     }
 });
 
