@@ -73,7 +73,9 @@ export default {
         });
 
         window.onmessage = (event) => {
-            i18n.global.locale.value = event.data.locale || "en";
+            if (event.data.locale) {
+                i18n.global.locale.value = event.data.locale;
+            }
         };
 
         const playAudio = (audio, source) => {

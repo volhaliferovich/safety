@@ -12,11 +12,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  experimental: {
-    renderBuiltUrl(filename, { hostId, hostType, type }) {
-      if (hostType !== 'css') {
-        return 'https://volhaliferovich.github.io/safety-select/' + filename
-      }
-    }
-  }
 })
