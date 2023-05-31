@@ -17,7 +17,7 @@
 
 <script>
 import { ref, computed } from "vue";
-import { i18n } from "@/plugins/i18n";
+import { useI18n } from "vue-i18n";
 import questions from "@/data";
 import Intro from "@/components/Intro.vue";
 import PlayAgain from "@/components/PlayAgain.vue";
@@ -36,7 +36,6 @@ import letsPlayVoiceFr from "./assets/audios/voice/FR/BL-0001_Jouons-à-Sécurit
 import introVoiceFr from "./assets/audios/voice/FR/BL-0002_Aidez-Darcy-Fraser-gestionnai_24k_mono.mp3";
 import correctVoiceFr from "./assets/audios/voice/FR/BL-0004_Correct_24k_mono.mp3";
 import wrongVoiceFr from "./assets/audios/voice/FR/BL-0005_Oups_24k_mono.mp3";
-import {useI18n} from "vue-i18n";
 
 export default {
     name: "App",
