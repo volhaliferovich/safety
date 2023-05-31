@@ -1,6 +1,0 @@
-@import './base.css';
-
-#app {
-    background: no-repeat url("../images/bg.png"), radial-gradient(82.22% 82.22% at 53.4% 56.11%, #FAB317 0%, #F96302 100%);
-    background-size: cover;
-}
